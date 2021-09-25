@@ -1,35 +1,34 @@
 import React, { Component } from "react";
-
+import getSongs from "../DB/getSongs";
 class HomePage extends Component {
+  state = {
+    songs: [
+      {
+        id: 1,
+        name: "tamaly maak",
+        author: "amr Diab",
+      },
+    ],
+  };
+  
   render() {
     return (
-      <table class="table">
+      <table class="table table-sm">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Songs's number </th>
+            <th scope="col">Song's name </th>
+            <th scope="col">Author's name</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {this.state.songs.map((col) => (
+            <tr>
+              <th scope="row"> {col.id} </th>
+              <td>{col.name}</td>
+              <td> {col.author} </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     );
