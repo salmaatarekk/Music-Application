@@ -15,7 +15,7 @@ connection.connect((err) => {
 });
 
 function getSongs(req, res, callback) {
-    const select = "select title from songs";
+    const select = "select songs.id, songs.title, artists.name from songs, artists where artists.id = songs.artistID ";
     let songs;
     connection.query(select, (err, result, fields) => {
         callback(result);

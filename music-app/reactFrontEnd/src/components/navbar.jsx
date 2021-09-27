@@ -5,8 +5,8 @@ class NavBar extends React.Component {
     return (
       <div  >
       <nav className="nav">
-      <a className="nav-link active" aria-current="page" href="#">Active</a>
-      <a className="nav-link" href="#">Link</a>
+      <a className="nav-link active" href="/">Songs</a>
+      <a className="nav-link" href="/login">Login</a>
       <a className="nav-link" href="#">Link</a>
       <a className="nav-link disabled">Disabled</a>
     </nav>
