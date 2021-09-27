@@ -1,4 +1,3 @@
-const { json } = require("express");
 const express = require("express");
 const mysql = require("mysql");
 const api = express();
@@ -15,17 +14,19 @@ connection.connect((err) => {
   
 });
 
-function getSongs() {
+function getSongs(req, res, callback) {
     const select = "select title from songs";
     let songs;
-    connection.query(select, (err, result) => {
-        songs = result;
-        console.log( songs );
+    connection.query(select, (err, result, fields) => {
+        callback(result);
     });
-    return songs;
 }
-getSongs();
 
 
+api.get('/music/songs', (request, response) =>{
+    getSongs(request, response, (returnedValue) => {
+        response.send(returnedValue);
+    } )
+} );
 
-// export default getSongs;
+api.listen(3000);
