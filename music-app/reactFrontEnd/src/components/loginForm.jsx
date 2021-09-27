@@ -1,6 +1,17 @@
 import React from 'react';
 import Form from './common/form';
+import  Joi  from 'joi-browser';
+
+
 class LogInForm extends Form {
+    state = {
+
+    }
+    schema = {
+        username : Joi.string().required().label('Username'),
+        password : Joi.string().required().label('Password')
+    }
+
     render() { 
         return(
             <div>
