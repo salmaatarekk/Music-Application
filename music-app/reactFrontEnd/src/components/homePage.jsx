@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 class HomePage extends Component {
   state = {
     songs: [
@@ -9,6 +10,11 @@ class HomePage extends Component {
       },
     ],
   };
+  componentDidMount() {
+    const promise = axios.get('http://localhost:5000/music/songs');
+    console.log(promise);
+
+  }
   
   render() {
     return (
