@@ -12,16 +12,16 @@ class Form extends Component {
   renderButton(label) {
     return <button className="btn btn-primary">{label}</button>;
   }
-  handleSubmit = e => {
-    e.preventDefault();
-    // call the server
-    const errors = this.validate();
-    this.setState( {errors : errors || {} });
-    if(errors)
-        return;
-     this.doSubmit();   
+//   handleSubmit = e => {
+//     e.preventDefault();
+//     // call the server
+//     const errors = this.validate();
+//     this.setState( {errors : errors || {} });
+//     if(errors)
+//         return;
+//      this.doSubmit();   
         
-};
+// };
 handleChange = ({currentTarget : input}) =>{
     
 

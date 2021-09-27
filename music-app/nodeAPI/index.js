@@ -1,7 +1,12 @@
 const express = require("express");
 const mysql = require("mysql");
+const cors = require('cors');
+
+
 const api = express();
 api.use(express.json());
+api.use(cors());
+
 
 let connection = mysql.createConnection({
   host: "localhost",
@@ -40,12 +45,17 @@ api.get('/users', (request, response) =>{
   } )
 } );
 
-api.post('createNewUser', (req, res) => {
+api.post('/createNewUser', (req, res) => {
   let newUserName = req.body.newUserName;
   let newUserPassword = req.body.newUserPassword;
   let newUserEmail = req.body.newUserEmail;
   let isAdmin = req.body.isAdmin;
-  const insert = `insert into users values (default, ${newUserName}, ${newUserEmail}, ${isAdmin}, ${newUserPassword} )`
+  const insert = `insert into users values (default, ${newUserName}, ${newUserEmail}, ${isAdmin}, ${newUserPassword} )`;
+  connection.query(insert, (err, result) => {
+    if(err)
+    throw err;
+    console.log('registered');
+  })
 })
 
 

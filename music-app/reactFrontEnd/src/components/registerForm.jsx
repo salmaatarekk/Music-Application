@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import From from './common/form';
 import axios from 'axios';
-import CheckBox from './common/checkbox';
 
 class RegisterForm extends From {
     state = {
@@ -14,8 +13,17 @@ class RegisterForm extends From {
     //     name: Joi.string().required().label('Name')
     // }
    handleRegister = (event) => {
-       event.preventDefault();
-       console.log(event.target.username.value) ;
+       const UserEmail = event.target.username;
+       const UserPassword = event.target.password;
+       const UserName = event.target.name;
+       const Admin = event.target.CheckBox.checked;
+       console.log(UserEmail);
+       axios.post('http://localhost:5000/createNewUser', {
+        newUserEmail : UserEmail,
+        newUserPassword : UserPassword,
+        newUserName : UserName,
+        isAdmin : Admin
+       } )
 
    };
     render() { 
@@ -24,13 +32,13 @@ class RegisterForm extends From {
             <div>
                 <h1>Register</h1>
                 
-                <form onSubmit = {this.handleRegister}>
+                <form>
                 
                 {this.renderInput('username', 'Username', true)}
                 {this.renderInput('password', 'Password', false, 'password')}
                 {this.renderInput('name', 'Name', false)}
                 {this.renderCheckBox()}
-                {this.renderButton('Register')}
+                <button  onClick = {this.handleRegister} className = "btn btn-primary">Register</button>
 
                 </form>   
             </div>
