@@ -13,9 +13,10 @@ class App extends React.Component {
           
            <main className = "container">
             <Switch>
-            <Route path="/" component={HomePage} />  
+            <Route path="/homePage" component={HomePage} />  
             <Route path="/login" component = {LogInForm} />
-
+            <Redirect from= "/" exact to ="/homePage" />
+            <Redirect to ='not-found' />
             </Switch>
           </main> 
           

@@ -1,16 +1,15 @@
 import React from 'react';
-
-class LogInForm extends React.Component {
+import Form from './common/form';
+class LogInForm extends Form {
     render() { 
         return(
             <div>
             <h1>Login Form</h1>
             <form>
-            <div className = "mb-3" >
-            <label className="form-label" >UserName</label> 
-            <input type ="email"  className="form-control" />  
-            </div>       
-             </form> 
+            {this.renderInput('username', 'Username', true)}
+            {this.renderInput('password', 'Password', false, 'password' ) }
+            {this.renderButton("Login")}  
+            </form> 
             </div> 
             
             );
