@@ -21,6 +21,7 @@ class LogInForm extends Form {
             <form>
             {this.renderInput('username', 'Username', true)}
             {this.renderInput('password', 'Password', false, 'password' ) }
+            {this.renderCheckBox()}
             {this.renderButton("Login")}  
             </form> 
             </div> 

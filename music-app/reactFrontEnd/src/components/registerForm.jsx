@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import From from './common/form';
 import axios from 'axios';
+import CheckBox from './common/checkbox';
 
 class RegisterForm extends From {
     state = {
@@ -22,11 +23,15 @@ class RegisterForm extends From {
 
             <div>
                 <h1>Register</h1>
+                
                 <form onSubmit = {this.handleRegister}>
+                
                 {this.renderInput('username', 'Username', true)}
                 {this.renderInput('password', 'Password', false, 'password')}
                 {this.renderInput('name', 'Name', false)}
-                <button onClick = {this.handleRegister} className = "btn btn-primary" >Register</button>
+                {this.renderCheckBox()}
+                {this.renderButton('Register')}
+
                 </form>   
             </div>
 
