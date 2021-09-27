@@ -2,18 +2,12 @@ import React, { Component } from "react";
 import axios from 'axios';
 class HomePage extends Component {
   state = {
-    songs: [
-      {
-        id: 1,
-        name: "tamaly maak",
-        author: "amr Diab",
-      },
-    ],
+    songs: []
   };
-  componentDidMount() {
-    const promise = axios.get('http://localhost:5000/music/songs');
-    console.log(promise);
-
+  async componentDidMount() {
+    const {data : songs} = await axios.get('http://localhost:5000/music/songs');
+    console.log(songs);
+    //this.setState({ songs });
   }
   
   render() {
