@@ -9,7 +9,6 @@ import getSongs from './DB/getSongs';
 class App extends React.Component {
   render() { 
     return (
-    
        <React.Fragment>
          <NavBar />
           <HomePage />

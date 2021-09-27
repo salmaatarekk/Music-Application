@@ -5,12 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
-import NavBar from './components/navbar';
+import getSongs from './DB/getSongs';
 
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <getSongs />
     </BrowserRouter>,
   document.getElementById('root')
 );

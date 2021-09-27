@@ -13,7 +13,7 @@ class HomePage extends Component {
   
   render() {
     return (
-      <table class="table table-sm">
+      <table className="table table-sm">
         <thead>
           <tr>
             <th scope="col">Songs's number </th>
@@ -23,7 +23,7 @@ class HomePage extends Component {
         </thead>
         <tbody>
           {this.state.songs.map((col) => (
-            <tr>
+            <tr key = {col.id} >
               <th scope="row"> {col.id} </th>
               <td>{col.name}</td>
               <td> {col.author} </td>

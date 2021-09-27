@@ -1,18 +1,31 @@
-import React, { Component } from 'react';
+const { json } = require("express");
+const express = require("express");
+const mysql = require("mysql");
+const api = express();
+api.use(express.json());
 
-const mysql = require('mysql');
-
-const connecntion = mysql.createConnection({
-    host : "localhost",
-    user : "root",
-    password: "tiger",
-    database: "Music App"
+let connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "tiger",
+  database: "library",
+});
+connection.connect((err) => {
+  if (err) throw err;
+  
 });
 
-const getSongs = () => {
-    // const select = 'select id, name from songs';
-    // const rows = connecntion.query(select );
-    // return rows;
+function getSongs() {
+    const select = "select title from songs";
+    let songs;
+    connection.query(select, (err, result) => {
+        songs = result;
+        console.log( songs );
+    });
+    return songs;
 }
- 
-export default getSongs;
+getSongs();
+
+
+
+// export default getSongs;
