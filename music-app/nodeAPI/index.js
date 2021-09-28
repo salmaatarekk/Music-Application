@@ -35,22 +35,14 @@ function getUsers(req, res, callback){
 }
 
 function searchForUser(req, res, callback){
-  console.log('email', req.params.userEmail);
-  console.log('pass', req.params.userPassword);
   const select = `select id from users where email = ${req.params.userEmail} and password = ${req.params.userPassword} `;
   connection.query(select, (err, result, fields) =>{
-    console.log('err', err);
-    console.log('fields', fields);
-    console.log('result', result)
     callback(result);
   } )
 }
 
 api.get('/searchForUsers/:userEmail/:userPassword', (request, response) => {
- 
- 
   searchForUser(request, response, (returnedValue) =>{
-    
     response.send(returnedValue);
   } )
 })
