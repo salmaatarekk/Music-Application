@@ -13,11 +13,16 @@ class RegisterForm extends From {
     //     name: Joi.string().required().label('Name')
     // }
    handleRegister = (event) => {
-       const UserEmail = event.target.username;
-       const UserPassword = event.target.password;
-       const UserName = event.target.name;
-       const Admin = event.target.CheckBox.checked;
-       console.log(UserEmail);
+       event.preventDefault();
+     //  console.log(this.state.data.username);
+       const UserEmail = this.state.data.username;
+       const UserPassword = this.state.data.password;
+       const UserName = this.state.data.name;
+       const Admin = false;
+       console.log( 'email', UserEmail );
+       console.log( 'password', UserPassword );
+       console.log( 'name', UserName ); 
+
        axios.post('http://localhost:5000/createNewUser', {
         newUserEmail : UserEmail,
         newUserPassword : UserPassword,
