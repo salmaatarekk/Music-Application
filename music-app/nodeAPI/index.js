@@ -35,7 +35,7 @@ function getUsers(req, res, callback){
 }
 
 function searchForUser(req, res, callback){
-  const select = `select id from users where email = ${req.params.userEmail} and password = ${req.params.userPassword} `;
+  const select = `select * from users where email = ${req.params.userEmail} and password = ${req.params.userPassword} `;
   connection.query(select, (err, result, fields) =>{
     callback(result);
   } )

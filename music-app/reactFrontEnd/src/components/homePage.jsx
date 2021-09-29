@@ -10,6 +10,7 @@ class HomePage extends Component {
     this.setState({ songs });
   }
   
+  
   render() {
     return (
       <table className="table table-sm">
@@ -18,6 +19,7 @@ class HomePage extends Component {
             <th scope="col">Song's number </th>
             <th scope="col">Song's name </th>
             <th scope="col">Artist's name</th>
+            <th scope ="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -26,6 +28,7 @@ class HomePage extends Component {
               <th scope="row"> {col.id} </th>
               <td>{col.title}</td>
               <td> {col.name} </td>
+              
             </tr>
           ))}
         </tbody>

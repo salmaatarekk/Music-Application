@@ -6,8 +6,13 @@ import HomePage from './components/homePage';
 import LogInForm from './components/loginForm';
 import RegisterForm from './components/registerForm';
 
+
 class App extends React.Component {
-  render() { 
+  state = {
+    user : {}
+  }
+  render() {
+     
     return (
        <React.Fragment>
          <NavBar />
