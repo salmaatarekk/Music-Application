@@ -1,9 +1,9 @@
 import React from 'react';
+import { removeFromLocalStorage } from './common/localStorage';
 
 class Logout extends React.Component {
     componentDidMount() {
-        localStorage.removeItem("token");
-        window.location = '/';
+        removeFromLocalStorage("token");
     }
 
     render() { 

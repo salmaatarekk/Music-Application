@@ -1,6 +1,7 @@
 import React from 'react';
 import From from './common/form';
 import axios from 'axios';
+import setItemInLocalStorage from './common/localStorage';
 
 class RegisterForm extends From {
     state = {
@@ -12,7 +13,7 @@ class RegisterForm extends From {
     //     password : Joi.string().required().min(5).label('Password'),
     //     name: Joi.string().required().label('Name')
     // }
-   handleRegister = (event) => {
+   handleRegister =  (event) => {
        event.preventDefault();
      //  console.log(this.state.data.username);
        const UserEmail = this.state.data.username;
@@ -23,12 +24,13 @@ class RegisterForm extends From {
        console.log( 'password', UserPassword );
        console.log( 'name', UserName ); 
 
-       axios.post('http://localhost:5000/createNewUser', {
+        axios.post('http://localhost:5000/createNewUser', {
         newUserEmail : UserEmail,
         newUserPassword : UserPassword,
         newUserName : UserName,
         isAdmin : Admin
-       } )
+       } );
+       setItemInLocalStorage("token");
 
    };
     render() { 

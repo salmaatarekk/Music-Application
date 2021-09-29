@@ -1,5 +1,6 @@
 import React from "react";
 import Form from "./common/form";
+import setItemInLocalStorage from './common/localStorage';
 import Axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,9 +25,8 @@ class LogInForm extends Form {
       `http://localhost:5000/searchForUsers/'${userEmail}'/'${userPassword}' `
     );
     if (data.length > 0) {
-    localStorage.setItem("token", JSON.stringify(data[0]));
-    console.log("data", data[0]);
-    window.location = "/"; // redirect to HomePage
+    setItemInLocalStorage("token", data);
+    //console.log("data", data[0]);
     } else {
       // Doesn't work
 
