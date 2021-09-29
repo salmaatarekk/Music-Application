@@ -24,14 +24,13 @@ class LogInForm extends Form {
     const { data } = await Axios.get(
       `http://localhost:5000/searchForUsers/'${userEmail}'/'${userPassword}' `
     );
-    localStorage.setItem("token", data);
+    localStorage.setItem("token", JSON.stringify(data) );
     //console.log(data);
     if (data.length > 0) {
       this.props.history.push("/"); // redirect to HomePage
     } else {
       // Doesn't work
       toast("Incorrect Username or Password");
-      
       
     }
   };
