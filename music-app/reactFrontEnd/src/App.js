@@ -3,18 +3,28 @@ import jwtDecode from 'jwt-decode';
 import { Switch, Route, Redirect } from 'react-router';
 import HomePage from './components/homePage';
 import LogInForm from './components/loginForm';
+import Logout from './components/logout';
 import RegisterForm from './components/registerForm';
 import NavBar from './components/navbar';
 import './App.css';
 
 class App extends React.Component {
   state = {
-    user : {}
   }
 
   componentDidMount() {
+
+    try{
     const jwt =  localStorage.getItem("token"); // JSON web token
-     const user = JSON.parse(jwt) ; 
+    //const user = jwtDecode(jwt) ;
+    const user = JSON.parse(jwt);
+     console.log("user", user);
+     this.setState({user});
+    }
+    catch(err){
+     console.log("error ",  err);
+    }
+     
     //  console.log("type", typeof(user));
     //  console.log("user", user);
    
@@ -23,12 +33,13 @@ class App extends React.Component {
      
     return (
        <React.Fragment>
-         <NavBar />
+         <NavBar user = {this.state.user} />
           
            <main className = "container">
             <Switch>
             <Route path="/homePage" component={HomePage} />  
             <Route path="/login" component = {LogInForm} />
+            <Route path="/logout" component = {Logout} />
             <Route path = "/register" component = {RegisterForm} />
             <Redirect from= "/" exact to ="/homePage" />
             <Redirect to ='not-found' />
