@@ -15,9 +15,10 @@ class HomePage extends Component {
   }
   
   render() {
+    const {user} = this.props; 
     return (
       <React.Fragment>
-       <button onClick = {this.handleNewSong}  className="btn btn-danger" >New Song</button> 
+        {user && <button onClick = {this.handleNewSong}  className="btn btn-danger" >New Song</button> }
       <table className="table table-sm">
         <thead>
           <tr>

@@ -9,6 +9,7 @@ import UserProfile from './components/common/userProfile';
 import AddNewSong from './components/addNewSong';
 import './App.css';
 
+
 class App extends React.Component {
   state = {
   }
@@ -36,13 +37,11 @@ class App extends React.Component {
           
            <main className = "container">
             <Switch>
-            <Route path="/homePage" component={HomePage} />
+            <Route path="/homePage"  render = {props => <HomePage  props = {props}  user = {this.state.user} />  }  />
             <Route path = "/newSong" component = {AddNewSong} />
             <Route path="/login" component = {LogInForm} />
             <Route path="/logout" component = {Logout} />
-            <Route path = "/userProfile" 
-            render= { props => <UserProfile user = {this.state.user} /> }
-            />
+            <Route path = "/userProfile"  render= { props => <UserProfile props = {props} user = {this.state.user} /> } />
             <Route path = "/register" component = {RegisterForm} />
             <Redirect from= "/" exact to ="/homePage" />
             <Redirect to ='not-found' />

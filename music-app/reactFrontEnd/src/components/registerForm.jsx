@@ -24,13 +24,13 @@ class RegisterForm extends From {
        console.log( 'password', UserPassword );
        console.log( 'name', UserName ); 
 
-        axios.post('http://localhost:5000/createNewUser', {
+         axios.post('http://localhost:5000/createNewUser', {
         newUserEmail : UserEmail,
         newUserPassword : UserPassword,
         newUserName : UserName,
         isAdmin : Admin
        } );
-       setItemInLocalStorage("token");
+       window.location = '/login';
 
    };
     render() { 
