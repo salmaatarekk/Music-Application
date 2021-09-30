@@ -29,10 +29,7 @@ class LogInForm extends Form {
     //console.log("data", data[0]);
     } else {
       // Doesn't work
-
-      <div class="alert alert-primary" role="alert">
-         Incorrect Username or Password!
-      </div>;
+      toast.error("Incorrect Username or Password");
     }
   };
   render() {

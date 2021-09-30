@@ -40,7 +40,7 @@ handleChange = ({currentTarget : input}) =>{
         label={label}
         onChange={this.handleChange}
         autoFocus={autoFocus}
-        error={errors[name]}
+     //   error={errors[name]}
       />
     );
   }

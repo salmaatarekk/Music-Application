@@ -21,7 +21,7 @@ connection.connect((err) => {
 });
 
 function getSongs(req, res, callback) {
-    const select = "select songs.id, songs.title, artists.name from songs, artists where artists.id = songs.artistID ";
+    const select = "select songs.id, songs.title, artistName from songs";
   
     connection.query(select, (err, result, fields) => {
         callback(result);
@@ -69,10 +69,22 @@ api.post('/createNewUser', (req, res) => {
   const insert = `insert into users (name, email, isAdmin, password ) values ( '${newUserName}', '${newUserEmail}', ${isAdmin}, '${newUserPassword}' )`;
   connection.query(insert, (err, result) => {
     if(err)
-     console.log(err);
+     console.log("NewUser error", err);
      else
     console.log('registered');
   })
+})
+
+api.post('/createNewSong', (req, res) =>{
+  let newSongTitle = req.body.newSongTitle;
+  let newSongAlbumName = req.body.newSongAlbumName;
+  let newSongArtistName = req.body.newSongArtistName;
+  const insert = `insert into songs (title, albumName, artistName) values ('${newSongTitle}', '${newSongAlbumName}', '${newSongArtistName}')`;
+  connection.query(insert, (err, result) => {
+    if(err)
+    console.log("newSong err", err);
+  })
+
 })
 
 
