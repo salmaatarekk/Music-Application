@@ -11,7 +11,8 @@ class HomePage extends Component {
     console.log("songs", songs);
   }
   handleNewSong = () =>{
-    this.props.history.push('/newSong');
+    // this.props.history.push('/newSong');
+    window.location = '/newSong';
   }
   
   render() {

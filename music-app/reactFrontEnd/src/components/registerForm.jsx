@@ -1,20 +1,20 @@
 import React from 'react';
 import From from './common/form';
 import axios from 'axios';
-import setItemInLocalStorage from './common/localStorage';
+import  Joi  from 'joi-browser';
 
 class RegisterForm extends From {
     state = {
         data : {username : "", password : "", name: ""},
         errors : {}
     }
-    // schema = {
-    //     username : Joi.string().required().email().label('Username'),
-    //     password : Joi.string().required().min(5).label('Password'),
-    //     name: Joi.string().required().label('Name')
-    // }
-   handleRegister =  (event) => {
-       event.preventDefault();
+    schema = {
+        username : Joi.string().required().email().label('Username'),
+        password : Joi.string().required().min(3).label('Password'),
+        name: Joi.string().required().label('Name')
+    }
+   doSubmit =  () => {
+       
      //  console.log(this.state.data.username);
        const UserEmail = this.state.data.username;
        const UserPassword = this.state.data.password;
@@ -39,13 +39,13 @@ class RegisterForm extends From {
             <div>
                 <h1>Register</h1>
                 
-                <form>
+                <form onSubmit = {this.handleSubmit} >
                 
                 {this.renderInput('username', 'Username', true)}
                 {this.renderInput('password', 'Password', false, 'password')}
                 {this.renderInput('name', 'Name', false)}
                 {this.renderCheckBox()}
-                <button  onClick = {this.handleRegister} className = "btn btn-primary">Register</button>
+                {this.renderButton('Register')}
 
                 </form>   
             </div>
