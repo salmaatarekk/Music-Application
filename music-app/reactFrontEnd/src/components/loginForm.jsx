@@ -3,7 +3,7 @@ import Form from "./common/form";
 import setItemInLocalStorage from './common/localStorage';
 import Axios from "axios";
 import  Joi from "joi-browser";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 class LogInForm extends Form {
@@ -16,6 +16,7 @@ class LogInForm extends Form {
       password : Joi.string().required().min(3).label('Password')
   }
 
+  
     doSubmit = async () => {
     
     const userEmail = this.state.data.username;
@@ -28,7 +29,7 @@ class LogInForm extends Form {
     setItemInLocalStorage("token", data);
     //console.log("data", data[0]);
     } else {
-      // Doesn't work
+      
       toast.error("Incorrect Username or Password");
     }
   };

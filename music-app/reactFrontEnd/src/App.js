@@ -8,6 +8,8 @@ import NavBar from './components/navbar';
 import UserProfile from './components/common/userProfile';
 import AddNewSong from './components/addNewSong';
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
 
 
 class App extends React.Component {
@@ -33,6 +35,7 @@ class App extends React.Component {
   render() {
     return (
        <React.Fragment>
+         <ToastContainer />
          <NavBar user = {this.state.user} />
           
            <main className = "container">
