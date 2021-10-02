@@ -87,6 +87,16 @@ api.post('/createNewSong', (req, res) =>{
 
 })
 
+api.delete('/DeleteSong/:id', (req, res) => {
+  console.log('id', req.params.id);
+ const del = `delete from songs where id = ${req.params.id}`;
+ connection.query(del, (err, result) =>{
+   if(err)
+   console.log("Delete", err);
+   else 
+   console.log("Deleted");
+ } )
+})
 
 
 

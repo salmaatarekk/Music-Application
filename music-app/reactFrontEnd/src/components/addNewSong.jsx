@@ -16,7 +16,7 @@ class AddNewSong extends Form {
     albumName: Joi.string().required().label("Album Name"),
     artistName: Joi.string().required().label("Artist Name"),
   };
-  doSubmit = (event) => {
+  doSubmit = () => {
    
     const { name, albumName, artistName } = this.state.data;
 

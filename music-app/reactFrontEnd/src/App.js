@@ -7,9 +7,9 @@ import RegisterForm from './components/registerForm';
 import NavBar from './components/navbar';
 import UserProfile from './components/common/userProfile';
 import AddNewSong from './components/addNewSong';
+import { ToastContainer } from 'react-toastify';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css'
-import { ToastContainer } from 'react-toastify';
 
 
 class App extends React.Component {
@@ -27,12 +27,10 @@ class App extends React.Component {
     catch(err){
      console.log("error ",  err);
     }
-     
-    //  console.log("type", typeof(user));
-    //  console.log("user", user);
    
   }
   render() {
+    const {user} = this.state;
     return (
        <React.Fragment>
          <ToastContainer />
@@ -40,11 +38,11 @@ class App extends React.Component {
           
            <main className = "container">
             <Switch>
-            <Route path="/homePage"  render = {props => <HomePage  props = {props}  user = {this.state.user} />  }  />
+            <Route path="/homePage"  render = {props => <HomePage  props = {props}  user = {user} />  }  />
             <Route path = "/newSong" component = {AddNewSong} />
             <Route path="/login" component = {LogInForm} />
             <Route path="/logout" component = {Logout} />
-            <Route path = "/userProfile"  render= { props => <UserProfile props = {props} user = {this.state.user} /> } />
+            <Route path = "/userProfile"  render= { props => <UserProfile props = {props} user = {user} /> } />
             <Route path = "/register" component = {RegisterForm} />
             <Redirect from= "/" exact to ="/homePage" />
             <Redirect to ='not-found' />

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import {withRouter} from 'react-router'
+
+
 class HomePage extends Component {
   state = {
     songs: []
@@ -13,6 +14,10 @@ class HomePage extends Component {
   handleNewSong = () =>{
     // this.props.history.push('/newSong');
     window.location = '/newSong';
+  }
+  handleDelete =  ( id ) =>{
+     axios.delete(`http://localhost:5000/DeleteSong/'${id}'`);
+    window.location.reload();
   }
   
   render() {
@@ -35,7 +40,7 @@ class HomePage extends Component {
               <th scope="row"> {col.id} </th>
               <td>{col.title}</td>
               <td> {col.artistName} </td>
-              
+              { user && <button onClick = { () => this.handleDelete(col.id) } className = "btn btn-danger">Delete</button> }
             </tr>
           ))}
         </tbody>
