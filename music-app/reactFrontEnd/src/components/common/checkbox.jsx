@@ -1,22 +1,19 @@
 import React from "react";
 
-
-class CheckBox extends React.Component {
-  render() {
+const CheckBox = ( ) =>  {
+  
     return (
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="flexCheckDefault"
-        />
-        <label class="form-check-label" for="flexCheckDefault">
+      <div className="form-check">
+        <input type="checkbox" className="form-check-input filled-in" id="new3"  />
+        <label
+          className="form-check-label small text-uppercase card-link-secondary"
+          for="new3"
+        >
           Admin
         </label>
       </div>
     );
-  }
+  
 }
 
 export default CheckBox;

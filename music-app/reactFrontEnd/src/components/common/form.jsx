@@ -50,8 +50,16 @@ class Form extends Component {
     
     const data = {...this.state.data};
     data[input.name] = input.value;
+    
     this.setState( {data, errors} );
   };
+  // handleChecked = (e) =>{
+  //   const data = {...this.state.data};
+  //   data[e.currentTarget.checked] = (e.currentTarget.checked) ;
+  //   this.setState({data});
+  //   console.log(data); 
+    
+  // }
   
   renderButton(label) {
     return <button
@@ -75,7 +83,8 @@ class Form extends Component {
   }
 
   renderCheckBox() {
-    return <CheckBox />;
+    return <CheckBox
+    />;
   }
 }
 

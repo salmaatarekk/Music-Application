@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 class App extends React.Component {
   state = {
+    user : {}
   }
 
   componentDidMount() {
@@ -34,7 +35,7 @@ class App extends React.Component {
     return (
        <React.Fragment>
          <ToastContainer />
-         <NavBar user = {this.state.user} />
+         <NavBar user = {user} />
           
            <main className = "container">
             <Switch>

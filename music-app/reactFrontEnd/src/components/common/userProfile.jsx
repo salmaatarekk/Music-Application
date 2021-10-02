@@ -5,6 +5,7 @@ class UserProfile extends React.Component {
 
   render() {
     const { user } = this.props;
+    
     return (
         <form className ="form-floating">
         <label  for="floatingInputValue">User Email</label> 
