@@ -1,4 +1,7 @@
+const { deleteSong } =  require('./sqlQueries');
+
 const mysql = require("mysql");
+
 
 let connection = mysql.createConnection({
     host: "localhost",
@@ -9,7 +12,7 @@ let connection = mysql.createConnection({
   connection.connect((err) => {
     if (err) throw err;
     
-  });
+});
 
 function getSongs(req, res, callback) {
     const select = "select id, title, artistName from songs";
@@ -59,8 +62,20 @@ function createNewSong(req)
     })
 }
 
+function deleteSongFromDB(req)
+{
+const deleteQuery =  deleteSong(req.params.id);
+ connection.query(deleteQuery, (err, result) =>{
+   if(err)
+   console.log("Delete", err);
+   else 
+   console.log("Deleted");
+ } )
+}
+
 module.exports.getSongs = getSongs ;
 module.exports.getUsers = getUsers ;
 module.exports.searchForUser = searchForUser ;
 module.exports.createNewUser = createNewUser;
 module.exports.createNewSong = createNewSong;
+module.exports.deleteSongFromDB = deleteSongFromDB;
