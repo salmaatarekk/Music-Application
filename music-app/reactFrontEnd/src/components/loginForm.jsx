@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 class LogInForm extends Form {
   state = {
-    data: { username: "", password: "", admin : false },
+    data: { username: "", password: "" },
     errors: {},
   };
   schema = {
@@ -37,7 +37,7 @@ class LogInForm extends Form {
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("username", "Username", true)}
           {this.renderInput("password", "Password", false, "password")}
-          {this.renderCheckBox(this.state.data.admin)}
+          {this.renderCheckBox()}
           {this.renderButton("Login")}
         </form>
         <a className="link" href="/register">
