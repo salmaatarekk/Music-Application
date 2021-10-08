@@ -5,12 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
-import MediaControlCard from './components/common/card';
 
 
 ReactDOM.render(
   <BrowserRouter>
-    <MediaControlCard />
+    <App />
     </BrowserRouter>,
   document.getElementById('root')
 );
