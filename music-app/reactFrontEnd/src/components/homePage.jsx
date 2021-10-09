@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 class HomePage extends Component {
   state = {
@@ -24,7 +25,7 @@ class HomePage extends Component {
     const {user} = this.props; 
     return (
       <React.Fragment>
-        {user && <Button variant = 'contained' onClick = {this.handleNewSong}  className="btn btn-danger m-2 " >New Song</Button> }
+        {user && <Button variant = 'contained' onClick = {this.handleNewSong}  className="btn btn-danger m-2 ">New Song</Button> }
       <table className="table table-sm">
         <thead>
           <tr>
@@ -40,7 +41,7 @@ class HomePage extends Component {
               <th scope="row"> {col.id} </th>
               <td>{col.title}</td>
               <td> {col.artistName} </td>
-              { user && <Button  variant = 'outlined' color = 'error' onClick = { () => this.handleDelete(col.id) } className = "btn btn-danger m-2">Delete</Button> }
+              { user && <Button  variant = 'outlined' color = 'error' startIcon = {<DeleteIcon />}  onClick = { () => this.handleDelete(col.id) } className = "btn btn-danger m-2">Delete</Button> }
             </tr>
           ))}
         </tbody>
