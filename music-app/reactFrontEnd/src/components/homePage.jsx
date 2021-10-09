@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
 import SongCard from "./common/songCard";
 
 class HomePage extends Component {
@@ -31,8 +30,9 @@ class HomePage extends Component {
         this.state.songs.map(c => (
           <SongCard
            SongName = {c.title} 
-           ArtistName = {c.ArtistName}
+           ArtistName = {c.artistName}
            SongID = {c.id}
+           User = {user}
             />
         ))
       }

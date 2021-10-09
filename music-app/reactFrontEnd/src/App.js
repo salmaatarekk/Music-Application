@@ -10,6 +10,7 @@ import AddNewSong from './components/addNewSong';
 import { ToastContainer } from 'react-toastify';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css'
+import PrimarySearchAppBar from './components/appBar';
 
 
 class App extends React.Component {
@@ -35,7 +36,7 @@ class App extends React.Component {
     return (
        <React.Fragment>
          <ToastContainer />
-         <NavBar user = {user} />
+         <PrimarySearchAppBar user = {user} />
           
            <main className = "container">
             <Switch>
