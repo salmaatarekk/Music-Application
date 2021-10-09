@@ -6,16 +6,12 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Button } from "@mui/material";
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -59,63 +55,33 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function PrimarySearchAppBar({ user }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const open = Boolean(anchorEl);
 
-  const handleProfileMenuOpen = (event) => {
+  const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
+  const handleClose = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+  
   const handleLogIn = () => {
     window.location = "/login";
   };
-  const handleHomePage = () => {
+  const renderHomePage = () => {
     window.location = "/";
   };
-  const handleRegister = () => {
+  const renderRegister = () => {
     window.location = "/register";
   };
 
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
-  const mobileMenuId = "primary-search-account-menu-mobile";
+  
+  const mobileMenuId = "primary";
   const renderMobileMenu = (
     <Menu
-      anchorEl={mobileMoreAnchorEl}
+       anchorEl={anchorEl}
       anchorOrigin={{
         vertical: "top",
         horizontal: "right",
@@ -126,13 +92,12 @@ export default function PrimarySearchAppBar({ user }) {
         vertical: "top",
         horizontal: "right",
       }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
+      open={open}
+      onClose={handleClose}
     >
-      <MenuItem onClick={handleHomePage}>
+      <MenuItem onClick={renderHomePage}>
         <IconButton
           size="large"
-          aria-label="show 4 new mails"
           color="inherit"
         ></IconButton>
         <p>Home Page</p>
@@ -164,12 +129,9 @@ export default function PrimarySearchAppBar({ user }) {
             ></IconButton>
             <p>Login</p>
           </MenuItem>
-          <MenuItem onClick={handleRegister}>
+          <MenuItem onClick={renderRegister}>
             <IconButton
               size="large"
-              aria-label="account of current user"
-              aria-controls="primary-search-account-menu"
-              aria-haspopup="true"
               color="inherit"
             ></IconButton>
             <p>Register</p>
@@ -190,7 +152,7 @@ export default function PrimarySearchAppBar({ user }) {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <MenuIcon onClick = {renderHomePage} />
           </IconButton>
           <Typography
             variant="h6"
@@ -219,7 +181,7 @@ export default function PrimarySearchAppBar({ user }) {
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
+              onClick={handleOpen}
               color="inherit"
             >
               <MoreIcon />
@@ -228,7 +190,6 @@ export default function PrimarySearchAppBar({ user }) {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
     </Box>
   );
 }
