@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SongCard from "./common/songCard";
 
 class HomePage extends Component {
   state = {
@@ -26,26 +27,15 @@ class HomePage extends Component {
     return (
       <React.Fragment>
         {user && <Button variant = 'contained' onClick = {this.handleNewSong}  className="btn btn-danger m-2 ">New Song</Button> }
-      <table className="table table-sm">
-        <thead>
-          <tr>
-            <th scope="col">Song's number </th>
-            <th scope="col">Song's name </th>
-            <th scope="col">Artist's name</th>
-            <th scope ="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.songs.map( col => (
-            <tr key = {col.id} >
-              <th scope="row"> {col.id} </th>
-              <td>{col.title}</td>
-              <td> {col.artistName} </td>
-              { user && <Button  variant = 'outlined' color = 'error' startIcon = {<DeleteIcon />}  onClick = { () => this.handleDelete(col.id) } className = "btn btn-danger m-2">Delete</Button> }
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {
+        this.state.songs.map(c => (
+          <SongCard
+           SongName = {c.title} 
+           ArtistName = {c.ArtistName}
+           SongID = {c.id}
+            />
+        ))
+      }
       </React.Fragment>
     );
   }

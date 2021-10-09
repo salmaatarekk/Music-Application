@@ -5,13 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
-import SongCard from './components/common/songCard';
-import BasicCard from './components/common/songCard';
+
 
 
 ReactDOM.render(
   <BrowserRouter>
-    <BasicCard />
+    <App />
     </BrowserRouter>,
   document.getElementById('root')
 );

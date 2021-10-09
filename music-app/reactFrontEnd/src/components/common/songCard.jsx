@@ -14,6 +14,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import axios from 'axios';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -26,12 +29,16 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard() {
+export default function SongCard( {SongName, ArtistName, SongID} ) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+ const handleDelete =  ( id ) =>{
+    axios.delete(`http://localhost:5000/DeleteSong/'${id}'`);
+   window.location.reload();
+ }
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -46,7 +53,7 @@ export default function RecipeReviewCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title=" Talking to the moon"
+        title= {SongName}
       />
       
       <CardContent>
@@ -55,10 +62,11 @@ export default function RecipeReviewCard() {
           Artist Name
         </Typography>
         <Typography variant="body4" color="text.secondary">
-          Bruno Mars
+          {ArtistName}
         </Typography>
 
       </CardContent>
+     <Button  variant = 'outlined' color = 'error' startIcon = {<DeleteIcon />} onClick = { () => handleDelete(SongID) }  className = "btn btn-danger m-2">Delete</Button> 
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
