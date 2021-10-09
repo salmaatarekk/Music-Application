@@ -1,97 +1,86 @@
-import React from "react";
-import CardContent from "@material-ui/core/CardContent";
-import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
-import { useTheme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import CardMedia from "@material-ui/core/CardMedia";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import Card from "@material-ui/core/Card";
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Collapse from '@mui/material/Collapse';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import { red } from '@mui/material/colors';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShareIcon from '@mui/icons-material/Share';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+const ExpandMore = styled((props) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
 
- class SongCard extends React.component {
+export default function RecipeReviewCard() {
+  const [expanded, setExpanded] = React.useState(false);
 
-//   const playAudio = () => {
-//     const audioEl = document.getElementsByClassName("audio-element")[0];
-//     audioEl.play();
-//   };
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
-  render() {
   return (
-    <div style={{}}>
-      <h4>How to create Music Player UI in ReactJS?</h4>
-      <Card
-        style={{
-          width: 400,
-          display: "flex",
-          backgroundColor: "whitesmoke",
-          boxShadow: "4px 4px 4px gray",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
+    <Card sx={{ maxWidth: 345 }}>
+      <CardHeader
+        avatar={
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+            R
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title=" Talking to the moon"
+      />
+      
+      <CardContent>
+        
+        <Typography variant="subtitle2" color="text.primary">
+          Artist Name
+        </Typography>
+        <Typography variant="body4" color="text.secondary">
+          Bruno Mars
+        </Typography>
+
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <ExpandMore
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
         >
-          <CardContent
-            style={{
-              flex: "1 0 auto",
-            }}
-          >
-            <Typography component="h5" variant="h5">
-              Music Title
-            </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
-              Singer Name
-            </Typography>
-          </CardContent>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              paddingLeft: 1,
-              paddingBottom: 1,
-            }}
-          >
-            <IconButton aria-label="previous">
-              {useTheme().direction !== "rtl" ? (
-                <SkipPreviousIcon />
-              ) : (
-                <SkipNextIcon />
-              )}
-            </IconButton>
-            <IconButton aria-label="play/pause">
-              <PlayArrowIcon
-                style={{
-                  height: 38,
-                  width: 38,
-                }}
-                onClick={playAudio}
-              />
-            </IconButton>
-            <IconButton aria-label="next">
-              {useTheme().direction !== "rtl" ? (
-                <SkipNextIcon />
-              ) : (
-                <SkipPreviousIcon />
-              )}
-            </IconButton>
-          </div>
-        </div>
-        <CardMedia
-          style={{
-            width: 151,
-          }}
-          image="https://write.geeksforgeeks.org/static/media/Group%20210.08204759.svg"
-        />
-        <audio className="audio-element">
-          <source src="https://assets.coderrocketfuel.com/pomodoro-times-up.mp3"></source>
-        </audio>
-      </Card>
-    </div>
+          <ExpandMoreIcon />
+        </ExpandMore>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          
+    
+        </CardContent>
+      </Collapse>
+    </Card>
   );
 }
- }
- export default SongCard
