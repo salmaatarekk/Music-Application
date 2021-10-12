@@ -21,6 +21,7 @@ function getSongs(req, res, callback) {
         callback(result);
     });
 }
+
 function getUsers(req, res, callback){
   const select = "select id, name from users ";
   connection.query(select, (err, result, fields) => {
@@ -50,12 +51,13 @@ function createNewUser(req)
   })
 }
 
+
 function createNewSong(req)
 {
     let newSongTitle = req.body.newSongTitle;
     let newSongAlbumName = req.body.newSongAlbumName;
     let newSongArtistName = req.body.newSongArtistName;
-    let Image = req.files.sampleFile.name;
+    let Image = req.body.newSongImage.name;
     const insert = `insert into songs (title, albumName, artistName, image) values ('${newSongTitle}', '${newSongAlbumName}', '${newSongArtistName}', '${Image}')`;
     connection.query(insert, (err, result) => {
       if(err)

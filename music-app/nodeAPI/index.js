@@ -17,7 +17,9 @@ api.use(function (req, res, next) {
 
 
 // default option
-api.use(fileUpload());
+api.use(fileUpload({ preserveExtension: 5 }));
+
+api.use(express.urlencoded({ extended: true }));
 
 // Static Files
 api.use(express.static('public'));
@@ -49,18 +51,26 @@ api.post('/createNewUser', (req, res) => {
 api.post('/createNewSong', (req, res) =>{
   let sampleFile;
   let uploadPath;
-  if (!req.files || Object.keys(req.files).length === 0) {
+  // console.log('files', req.files);
+
+  // console.log('req', req.body);
+
+
+  if (!req.body.file ) {
     return res.status(400).send('No files were uploaded.');
   }
-  sampleFile = req.files.sampleFile;
   
-  uploadPath = __dirname + '/imagesuploaded' + sampleFile.name;
+  sampleFile = req.body.file;
+   console.log("file", sampleFile);
+  
+  uploadPath = __dirname + '/upload/' + sampleFile;
+  console.log("path", uploadPath);
   sampleFile.mv(uploadPath, err => {
     if(err)
       res.status(500).send(err);
     
-    createNewSong(req);
-  } ) 
+      createNewSong(req);
+    } ) 
 })
 
 api.delete('/DeleteSong/:id', (req, res) => {
