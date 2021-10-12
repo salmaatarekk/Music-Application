@@ -15,7 +15,7 @@ let connection = mysql.createConnection({
 });
 
 function getSongs(req, res, callback) {
-    const select = "select id, title, artistName from songs";
+    const select = "select id, title, artistName, image from songs";
     //let songs = [];
     connection.query(select, (err, result, fields) => {
         callback(result);
@@ -55,7 +55,8 @@ function createNewSong(req)
     let newSongTitle = req.body.newSongTitle;
     let newSongAlbumName = req.body.newSongAlbumName;
     let newSongArtistName = req.body.newSongArtistName;
-    const insert = `insert into songs (title, albumName, artistName) values ('${newSongTitle}', '${newSongAlbumName}', '${newSongArtistName}')`;
+    let Image = req.files.sampleFile.name;
+    const insert = `insert into songs (title, albumName, artistName, image) values ('${newSongTitle}', '${newSongAlbumName}', '${newSongArtistName}', '${Image}')`;
     connection.query(insert, (err, result) => {
       if(err)
       console.log("newSong err", err);

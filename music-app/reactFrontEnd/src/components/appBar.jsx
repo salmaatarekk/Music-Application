@@ -109,7 +109,7 @@ export default function PrimarySearchAppBar({ user }) {
               size="large"
               color="inherit"
             ></IconButton>
-            <p>{user.name}</p>
+            <p>{ user.name } </p>
           </MenuItem>
           <MenuItem onClick={() => window.location = '/logout'}>
             <IconButton
@@ -164,7 +164,9 @@ export default function PrimarySearchAppBar({ user }) {
           </Typography>
           <Search>
             <SearchIconWrapper>
-              <SearchIcon />
+              <SearchIcon 
+               
+              />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"

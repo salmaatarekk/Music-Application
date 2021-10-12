@@ -16,10 +16,6 @@ class HomePage extends Component {
     // this.props.history.push('/newSong');
     window.location = '/newSong';
   }
-  handleDelete =  ( id ) =>{
-     axios.delete(`http://localhost:5000/DeleteSong/'${id}'`);
-    window.location.reload();
-  }
   
   render() {
     const {user} = this.props; 
@@ -32,6 +28,7 @@ class HomePage extends Component {
            SongName = {c.title} 
            ArtistName = {c.artistName}
            SongID = {c.id}
+           SongImage = {c.image}
            User = {user}
             />
         ))

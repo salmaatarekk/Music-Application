@@ -1,6 +1,7 @@
 const express = require("express");
 const {getSongs, getUsers, searchForUser, createNewUser , createNewSong, deleteSongFromDB} = require('./helperModule');
 const api = express();
+const fileUpload = require('express-fileupload');
 api.use(express.json());
 
 api.use(function (req, res, next) {
@@ -14,6 +15,13 @@ api.use(function (req, res, next) {
   next();
 });
 
+
+// default option
+api.use(fileUpload());
+
+// Static Files
+api.use(express.static('public'));
+api.use(express.static('upload'));
 
 api.get('/searchForUsers/:userEmail/:userPassword', (request, response) => {
   searchForUser(request, response, (returnedValue) =>{
@@ -39,7 +47,20 @@ api.post('/createNewUser', (req, res) => {
 })
 
 api.post('/createNewSong', (req, res) =>{
-   createNewSong(req);
+  let sampleFile;
+  let uploadPath;
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+  sampleFile = req.files.sampleFile;
+  
+  uploadPath = __dirname + '/imagesuploaded' + sampleFile.name;
+  sampleFile.mv(uploadPath, err => {
+    if(err)
+      res.status(500).send(err);
+    
+    createNewSong(req);
+  } ) 
 })
 
 api.delete('/DeleteSong/:id', (req, res) => {

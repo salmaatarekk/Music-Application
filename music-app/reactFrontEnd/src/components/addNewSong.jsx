@@ -37,15 +37,16 @@ class AddNewSong extends Form {
   };
   render() {
     return (
-      <div>
+      <React.Fragment>
         <h1>Add New Song</h1>
+        <input type = 'file' />
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("name", "Name", true)}
           {this.renderInput("albumName", "Album Name", false)}
           {this.renderInput("artistName", "Artist Name", false)}
           {this.renderButton("ADD")}
         </form>
-      </div>
+      </React.Fragment>
     );
   }
 }

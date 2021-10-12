@@ -13,6 +13,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import CardMedia from '@mui/material/CardMedia';
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
@@ -28,7 +29,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function SongCard({ SongName, ArtistName, SongID, User }) {
+export default function SongCard({ SongName, ArtistName, SongID, SongImage, User }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -47,12 +48,19 @@ export default function SongCard({ SongName, ArtistName, SongID, User }) {
             <AudiotrackIcon />
           </Avatar>
         }
+        
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
         title={SongName}
+      />
+      <CardMedia
+        component="img"
+        height="194"
+        image= {SongImage}
+        // alt="Paella dish"
       />
 
       <CardContent>
