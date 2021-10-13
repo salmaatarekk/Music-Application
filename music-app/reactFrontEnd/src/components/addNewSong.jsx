@@ -8,7 +8,7 @@ class AddNewSong extends Form {
       name: "",
       albumName: "",
       artistName: "",
-      selectedImage : {},
+      selectedImage : null ,
     },
     errors: {}, 
   };
@@ -19,45 +19,43 @@ class AddNewSong extends Form {
     selectedImage : Joi.any().label('Image'),
   };
   handleSelectImage = (event) => {
-    console.log("img",  event.target.files[0]  );
-    this.setState({selectedImage : event.target.files[0]});
+    // console.log(event.target.files[0]);
+    const data = {...this.state.data};
+    data.selectedImage = event.target.files[0];
+    // console.log("data", data.selectedImage);
+    this.setState({data});
     
+    //  console.log("yasater", this.state.selectedImage);
   }
   doSubmit = () => {
    
     const { name, albumName, artistName, selectedImage } = this.state.data;
 
-    const newSongName = name;
-    const newSongAlbum = albumName;
-    const newSongArtist = artistName;
-    const newImage = selectedImage;
+    const newSongTitle = name;
+    const newSongAlbumName = albumName;
+    const newSongArtistName = artistName;
+    const newSongImage = selectedImage;
 
-    console.log("name", newSongName);
-    console.log("album", newSongAlbum);
-    console.log("artist", newSongArtist);
-    console.log("Image", newImage);
+    
     
    
     const formData = new FormData();
-    formData.append("file", newImage);
+    formData.append("image", newSongImage);
+    formData.append("name", newSongTitle);
+    formData.append("artist", newSongArtistName);
+    formData.append("album", newSongAlbumName);
         
-     axios.post('http://localhost:5000/createNewSong', formData, {
+    axios.post('http://localhost:5000/createNewSong', formData, {
               headers: { "Content-Type": "multipart/form-data" },
     });
 
-    // axios.post("http://localhost:5000/createNewSong", {
-    //   newSongTitle: newSongName,
-    //   newSongAlbumName: newSongAlbum,
-    //   newSongArtistName: newSongArtist,
-    //   newSongImage : newImage,
-    // });
     window.location = "/";
   };
   render() {
     return (
       <React.Fragment>
         <h1>Add New Song</h1>
-        <input type = 'file' onChange = {this.handleSelectImage} />
+        <input type = 'file' name = "image" accept = "image/*" multiple = {false} onChange = {this.handleSelectImage} />
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("name", "Name", true)}
           {this.renderInput("albumName", "Album Name", false)}

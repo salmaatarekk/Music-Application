@@ -54,10 +54,10 @@ function createNewUser(req)
 
 function createNewSong(req)
 {
-    let newSongTitle = req.body.newSongTitle;
-    let newSongAlbumName = req.body.newSongAlbumName;
-    let newSongArtistName = req.body.newSongArtistName;
-    let Image = req.body.newSongImage.name;
+    let newSongTitle = req.body.name;
+    let newSongAlbumName = req.body.album;
+    let newSongArtistName = req.body.artist;
+    let Image = req.files.image.name;
     const insert = `insert into songs (title, albumName, artistName, image) values ('${newSongTitle}', '${newSongAlbumName}', '${newSongArtistName}', '${Image}')`;
     connection.query(insert, (err, result) => {
       if(err)
