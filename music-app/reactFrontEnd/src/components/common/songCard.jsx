@@ -18,6 +18,9 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 
+const imagePath = "D:\Computer Sceince\Projects\Music-Application\music-app\nodeAPI/upload/";
+const defaultImageName = "unnamed.jpg";
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -29,7 +32,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function SongCard({ SongName, ArtistName, SongID, SongImage, User }) {
+export default function SongCard({ SongName, ArtistName, SongID, ImageName, User }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -59,7 +62,7 @@ export default function SongCard({ SongName, ArtistName, SongID, SongImage, User
       <CardMedia
         component="img"
         height="194"
-        image= {SongImage}
+        image= { imagePath + (ImageName || defaultImageName ) }
         // alt="Paella dish"
       />
 

@@ -28,7 +28,7 @@ class HomePage extends Component {
            SongName = {c.title} 
            ArtistName = {c.artistName}
            SongID = {c.id}
-           SongImage = {c.image}
+           ImageName = {c.image}
            User = {user}
             />
         ))
