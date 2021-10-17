@@ -1,12 +1,13 @@
 import React from "react";
 import axios from "axios";
-import unnamed from "../../upload/unnamed.jpg"; 
+import { StyleSheet } from 'react-router-dom';
+import "../styles.css";
+
 
 class Header extends React.Component {
   state = {
     data: {},
-    defaultImageName : "unnamed.jpg",
-
+    defaultImageName: "unnamed.jpg",
   };
 
   async componentDidMount() {
@@ -15,21 +16,12 @@ class Header extends React.Component {
       `http://localhost:5000/renderImage/${name || this.state.defaultImageName}`
     );
     data = data.data;
-    console.log("data", data); 
-    this.setState({data});
+    console.log("data", data);
+    this.setState({ data });
   }
 
-
   render() {
-    
-      // try {
-      //   require('//upload//unnamed.jpg');
-      //   console.log('found');
-      // } catch (err) {
-      //   console.log('not found');
-      // }
-    
-    return <img src={this.state.data} alt = {'Display img'} />;
+    return <img className = "image" src={this.state.data} alt={"Display img"} />;
   }
 }
 
