@@ -27,6 +27,8 @@ api.use(fileUpload({ preserveExtension: 5 }));
 
 api.use(express.urlencoded({ extended: true }));
 
+api.use('/upload', express.static('upload'));
+
 // Static Files
 api.use(express.static('public'));
 api.use(express.static('upload'));
@@ -50,8 +52,9 @@ api.get('/users', (request, response) =>{
 } );
 
 api.get('/renderImage/:imageName', (req, res) => {
-  
-  filePath = __dirname + '\\upload\\' + req.params.imageName;
+  //http://localhost:5000/upload/unnamed.jpg
+  filePath = 'http://localhost:' + port + '/upload/' + req.params.imageName;
+  // console.log(filePath);
   res.send(filePath);
 })
 
@@ -83,6 +86,6 @@ api.delete('/DeleteSong/:id', (req, res) => {
   deleteSongFromDB(req);
 })
 
+const port = 5000;
 
-
-api.listen(5000);
+api.listen(port);

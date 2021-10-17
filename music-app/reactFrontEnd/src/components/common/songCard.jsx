@@ -17,6 +17,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
+import Header from './image';
 
 const imagePath = "D:\Computer Sceince\Projects\Music-Application\music-app\nodeAPI/upload/";
 const defaultImageName = "unnamed.jpg";
@@ -42,7 +43,7 @@ export default function SongCard({ SongName, ArtistName, SongID, ImageName, User
     axios.delete(`http://localhost:5000/DeleteSong/'${id}'`);
     window.location.reload();
   };
-
+  
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -59,12 +60,8 @@ export default function SongCard({ SongName, ArtistName, SongID, ImageName, User
         }
         title={SongName}
       />
-      <CardMedia
-        component="img"
-        height="194"
-        image= { imagePath + (ImageName || defaultImageName ) }
-        // alt="Paella dish"
-      />
+      <Header imageName = {ImageName} />
+      
 
       <CardContent>
         <Typography variant="subtitle2" color="text.primary">

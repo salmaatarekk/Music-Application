@@ -5,13 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
-import Header from './components/common/image';
-
 
 
 ReactDOM.render(
   <BrowserRouter>
-    <Header />
+    <App />
     </BrowserRouter>,
   document.getElementById('root')
 );
